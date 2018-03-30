@@ -1,4 +1,4 @@
-Class Util {
+class Util {
 
     static I64BIT_TABLE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-'.split('');
     
@@ -20,5 +20,37 @@ Class Util {
         }
         while (value >>= 6);
         return retValue;
+    }
+}
+
+class Transaction{
+    constructor(to,from,amount){
+        this.to = to;
+        this.from = from;
+        this.amount = amount;
+    }
+}
+
+class Block{
+    constructor(timeStamp,nonce){
+        this.transactions = [];
+        this.timeStamp = timeStamp;
+        this.nonce = nonce||0;
+    }
+    hash(){
+        return Util.hash(JSON.stringify(transaction)+timeStamp+nonce);    
+    }
+    addTransaction(transaction){
+        this.transactions.push(transaction);
+    }
+}
+
+class BlockChain{
+    constructor(difficulty){
+        this.blocks = null;
+        this.difficulty = difficulty;
+    }
+    addBlock(){
+
     }
 }
